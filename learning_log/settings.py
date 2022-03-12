@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'learning_logs',
-    'users'
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +123,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Пользователи будут перенаправлены на главную страницу после входа в систему
+LOGIN_REDIRECT_URL = 'home'
+# Пользователи будут перенаправлены на страницу входа после выхода из системы
+LOGOUT_REDIRECT_URL = "login"

@@ -11,7 +11,8 @@ urlpatterns = [
     # совпадающую с этой точкой, и отправляет оставшуюся строку во включенный URLconf для дальнейшей обработки.
     # первая чать выражения это url после адреса сайта
     path('', include('learning_logs.urls', namespace='learning_logs')),  # namespace не работает без app_name в urls приложения
-    path('users/', include('users.urls', namespace='users')),
-    path('admin/', admin.site.urls)
+    path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('home/', include('users.urls'))
 
 ]
