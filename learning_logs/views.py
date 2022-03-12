@@ -4,17 +4,20 @@ from django.http import HttpResponseRedirect
 from .models import Topic, Entry
 from django.urls import reverse
 from .forms import TopicForm, EntryForm
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
     """Домашняя страница приложения learning log"""
     return render(request, 'learning_logs/index.html')
 
+
 def topics(request):
     """Выводит список тем"""
     topics = Topic.objects.order_by('date_added')
     context = {'topics': topics}
     return render(request, 'learning_logs/topics.html', context)
+
 
 def topic(request, topic_id):
     """Выводит одну тему и все ее записи"""
@@ -25,6 +28,7 @@ def topic(request, topic_id):
     context = {'topic': topic, 'entries': entries}
     return render(request, 'learning_logs/topic.html', context)
 
+@login_required
 def new_topic(request):
     """Определяет новую тему"""
     if request.method != 'POST':
@@ -36,9 +40,11 @@ def new_topic(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('learning_logs:topics'))
-    context ={'form': form}
+    context = {'form': form}
     return render(request, 'learning_logs/new_topic.html', context)
 
+
+@login_required
 def new_entry(request, topic_id):
     """Добавляет новую запись по конкретной теме"""
     topic = Topic.objects.get(id=topic_id)
@@ -57,6 +63,7 @@ def new_entry(request, topic_id):
     context = {'topic': topic, 'form': form}
     return render(request, 'learning_logs/new_entry.html', context)
 
+@login_required
 def edit_entry(request, entry_id):
     """Редактирует существующую запись"""
     entry = Entry.objects.get(id=entry_id)

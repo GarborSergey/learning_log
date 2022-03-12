@@ -128,3 +128,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'learning_logs:index'
 # Пользователи будут перенаправлены на страницу входа после выхода из системы
 LOGOUT_REDIRECT_URL = "learning_logs:index"
+# Страница входа
+LOGIN_URL = 'login'

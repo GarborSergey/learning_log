@@ -1,10 +1,13 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Topic(models.Model):
     """Тема, которую изучает пользователь"""
     text = models.CharField(max_length=200)
     date_added = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)  # CASCADE так как внешний ключ требует 2 обяз, аргумента
+
 
     def __str__(self):
         """Возвращает строковое представление модели"""
@@ -14,7 +17,7 @@ class Entry(models.Model):
     """Информация, изученная пользователем по теме"""
     # Внешний ключ, содержит ссылку на другую запись в базе данных, таким образом каждая запись связывается с определенной темой
     # Позволяет реализовать один от многих
-    topic = models.ForeignKey(Topic, on_delete=models.CASCADE) # CASCADE так как внешний ключ требует 2 обяз, аргумента
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)  # CASCADE так как внешний ключ требует 2 обяз, аргумента
     text = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
 
