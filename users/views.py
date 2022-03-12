@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.urls import  reverse_lazy
+
+from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 # Проще всего воспользоваться UserCreationForm и представлением на основе класса CreateView,
 # предоставляемыми Django.
@@ -8,8 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView
 
 
-def home(request):
-    return render(request, 'users/home.html')
+
 
 # Добавляю класс представления
 

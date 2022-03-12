@@ -2,6 +2,7 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
+<title>login</title>
   <h2>Login</h2>
   
     <form method="post">
@@ -10,8 +11,14 @@
         {{ form.as_p }}
         <tr>
           <td>&nbsp;</td>
-          <td><input type="submit" value="Submit"></td>
+          <td><input type="submit" value="Login"></td>
         </tr>                
       </table>
+    </form>
+    <form action="{% url 'users:signup' %}">
+      <button type="submit">Registration</button>
+    </form>
+    <form action="{% url 'learning_logs:index' %}">
+      <button type="submit">Back to home</button>
     </form>
 {% endblock %}

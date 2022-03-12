@@ -1,7 +1,7 @@
 {% extends "learning_logs/base.html" %}
 
 {% block content %}
-
+<title>edit entry, topic {{ topic }}</title>
 <p href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</p>
 
 <p>Edit entry:</p>

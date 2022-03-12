@@ -1,7 +1,8 @@
 {% extends "learning_logs/base.html" %}
 
 {% block content %}
-  <p>Topics</p>
+<title>Topics</title>
+  <h1>Topics</h1>
 
   <ul>
       {% for topic in topics %}
@@ -12,6 +13,7 @@
         <li>No topics have been added yet.</li>
       {% endfor %}
   </ul>
-
-<a href="{% url 'learning_logs:new_topic' %}">Add a new topic</a>
+<form action="{% url 'learning_logs:new_topic' %}">
+    <button type="submit">Add a new topic</button>
+</form>
 {% endblock content%}

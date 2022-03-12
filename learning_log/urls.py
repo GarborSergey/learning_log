@@ -13,6 +13,6 @@ urlpatterns = [
     path('', include('learning_logs.urls', namespace='learning_logs')),  # namespace не работает без app_name в urls приложения
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('home/', include('users.urls'))
+    path('users/', include('users.urls', namespace='users'))
 
 ]
