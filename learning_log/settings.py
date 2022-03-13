@@ -37,8 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # мои приложения
     'learning_logs',
     'users',
+    # Сторонние приложения
+    'bootstrap3'
 ]
 
 MIDDLEWARE = [
@@ -130,3 +133,8 @@ LOGIN_REDIRECT_URL = 'learning_logs:index'
 LOGOUT_REDIRECT_URL = "learning_logs:index"
 # Страница входа
 LOGIN_URL = 'login'
+
+# Настройка bootstrap3
+BOOTSTRAP3 = {
+    'include_jquery': True,
+}
