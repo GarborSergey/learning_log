@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-jp4uczi%$p&()c$bq1*0hv6p9uk8z%h!d8*me59gkx7sum+i@^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['learning-log-serega-firsapp.herokuapp.com']
 
 
 # Application definition
@@ -141,7 +141,7 @@ BOOTSTRAP3 = {
 }
 
 # Настройки HEROKU
-ALLOWED_HOSTS = ['*']
+
 
 # import dj_database_url
 # prod_db  =  dj_database_url.config(conn_max_age=500)
