@@ -1,6 +1,6 @@
 # Представления сайта
-from django.shortcuts import render
-from django.http import HttpResponseRedirect, Http404
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect, Http404, HttpResponse
 from .models import Topic, Entry
 from django.urls import reverse
 from .forms import TopicForm, EntryForm
@@ -27,11 +27,10 @@ def topics(request):
 @login_required
 def topic(request, topic_id):
     """Выводит одну тему и все ее записи"""
-    topic = Topic.objects.get(id=topic_id)
+    topic = get_object_or_404(Topic, id=topic_id)
     check_topic_owner(request, topic)
     # запрос 1 к БД
     entries = topic.entry_set.order_by('-date_added')  # - сортирует записи в обратном порядке
-    # запрос 2 к БД
     context = {'topic': topic, 'entries': entries}
     return render(request, 'learning_logs/topic.html', context)
 
@@ -91,3 +90,11 @@ def edit_entry(request, entry_id):
             return HttpResponseRedirect(reverse('learning_logs:topic', args=[topic.id]))
     context = {'entry': entry, 'topic': topic, 'form': form}
     return render(request, 'learning_logs/edit_entry.html', context)
+
+def take_info(request):
+    values = request.META.items()
+    values.sort()
+    html = []
+    for k, v in values:
+        html.append('<tr><td>%s</td><td>%s</td></tr>' % (k, v))
+    return HttpResponse('<table>%s</table>' % '\n'.join(html))
